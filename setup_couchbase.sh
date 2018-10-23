@@ -38,11 +38,9 @@ sleep 10
  echo "Create [ admin ] user"
 
 # Community Edition requires that all nodes provision all services or data service only
-sudo /opt/couchbase/bin/couchbase-cli cluster-init -c 127.0.0.1 --cluster-username admin \
- --cluster-password password --services data,index,query,fts \
- --cluster-ramsize 1024 --cluster-index-ramsize 256 \
- --cluster-eventing-ramsize 256 \ 
- --cluster-fts-ramsize 256 \
- --index-storage-setting default
- 
- echo "Couchbase running successfully" 
+sudo /opt/couchbase/bin/couchbase-cli cluster-init \
+      --cluster-username=admin \
+      --cluster-password=password \
+      --cluster-ramsize=2048 
+
+echo "Couchbase running successfully" 
