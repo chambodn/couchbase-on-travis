@@ -18,4 +18,4 @@ sudo dpkg -i couchbase-release-1.0-4-amd64.deb
 sudo apt-get update 
 sudo apt-get install -yq libssl1.0.0 
 
-sudo apt install .couchbase-server.deb
+sudo apt install ./couchbase-server.deb
