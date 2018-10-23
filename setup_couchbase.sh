@@ -36,7 +36,13 @@ sudo dpkg -i ./$CB_PACKAGE && rm -f ./$CB_PACKAGE
  echo "Wait for couchbase startup"
 sleep 10
  echo "Create [ admin ] user"
+
+# Community Edition requires that all nodes provision all services or data service only
 sudo /opt/couchbase/bin/couchbase-cli cluster-init -c 127.0.0.1 --cluster-username admin \
- --cluster-password password --services data,index --cluster-ramsize 2048 \
- --cluster-index-ramsize 1024 --index-storage-setting memopt
+ --cluster-password password --services data,index,query,fts \
+ --cluster-ramsize 1024 --cluster-index-ramsize 256 \
+ --cluster-eventing-ramsize 256 \ 
+ --cluster-fts-ramsize 256 \
+ --index-storage-setting default
+ 
  echo "Couchbase running successfully" 
