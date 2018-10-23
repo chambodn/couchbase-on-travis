@@ -1,8 +1,4 @@
-language: go
-sudo: required
-
-go:
-- 1.10.x
+language: generic
 
 # Only clone the most recent commit.
 git:
@@ -10,4 +6,5 @@ git:
 
 before_install:
   - ./setup_couchbase.sh
+
 install: true
