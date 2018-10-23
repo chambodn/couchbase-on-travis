@@ -36,5 +36,7 @@ sudo dpkg -i ./$CB_PACKAGE && rm -f ./$CB_PACKAGE
  echo "Wait for couchbase startup"
 sleep 10
  echo "Create [ admin ] user"
-sudo /opt/couchbase/bin/couchbase-cli user-manage -c localhost -u Administrator -p password --set --rbac-username admin --rbac-password password --rbac-name "admin" --roles bucket_full_access[*],ro_admin --auth-domain local
+sudo /opt/couchbase/bin/couchbase-cli cluster-init -c 127.0.0.1 --cluster-username admin \
+ --cluster-password password --services data,index --cluster-ramsize 2048 \
+ --cluster-index-ramsize 1024 --index-storage-setting memopt
  echo "Couchbase running successfully" 
