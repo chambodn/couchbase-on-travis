@@ -34,11 +34,11 @@ numbered_echo() {
   i=`expr $i + 1`
 }
 
-numbered_echo "Prepare Couchbase dependencies"
+echo "# Prepare Couchbase dependencies"
 sudo apt-get update 
 sudo apt-get install -yq libssl1.0.0 runit wget python-httplib2 chrpath tzdata lsof lshw sysstat net-tools numactl
 
-numbered_echo "Downloading couchbase"
+echo "# Downloading couchbase"
 wget -q -N $CB_RELEASE_URL/$CB_VERSION/$CB_PACKAGE
 sudo dpkg -i ./$CB_PACKAGE && rm -f ./$CB_PACKAGE
 
@@ -51,18 +51,18 @@ done
 echo "# Couchbase Server Online"
 echo "# Starting setup process"
 
-numbered_echo "Setting up memory"
-  curl --silent "http://127.0.0.1:8091/pools/default" \
+echo "# Setting up memory"
+curl --silent "http://127.0.0.1:8091/pools/default" \
     -d memoryQuota=${MEMORY_QUOTA} \
     -d indexMemoryQuota=${INDEX_MEMORY_QUOTA} \
     -d ftsMemoryQuota=${FTS_MEMORY_QUOTA}
 
-  numbered_echo "Setting up services"
-  curl --silent "http://127.0.0.1:8091/node/controller/setupServices" \
+echo "# Setting up services"
+curl --silent "http://127.0.0.1:8091/node/controller/setupServices" \
     -d services="${SERVICES}"
 
-  numbered_echo "Setting up user credentials"
-  curl --silent "http://127.0.0.1:8091/settings/web" \
+echo "# Setting up user credentials"
+curl --silent "http://127.0.0.1:8091/settings/web" \
     -d port=8091 \
     -d username=${USERNAME} \
     -d password=${PASSWORD} > /dev/null
