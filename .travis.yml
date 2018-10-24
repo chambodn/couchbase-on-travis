@@ -10,4 +10,4 @@ before_install:
 install:
  - echo "Test Bucket Creation"
  - curl -X POST -u admin:password http://127.0.0.1:8091/pools/default/buckets -d name=newBucket -d ramQuotaMB=100 -d authType=none -d bucketType=ephemeral -d maxTTL=60 -d evictionPolicy=nruEviction
- - curl -u Administrator:password http://127.0.0.1:8091/pools/default/buckets
+ - curl -u admin:password http://127.0.0.1:8091/pools/default/buckets
