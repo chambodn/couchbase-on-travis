@@ -26,6 +26,14 @@ check_db() {
   echo $?
 }
 
+# Variable used in echo
+i=1
+# Echo with
+numbered_echo() {
+  echo "[$i] $@"
+  i=`expr $i + 1`
+}
+
 echo "Prepare Couchbase dependencies"
 sudo apt-get update 
 sudo apt-get install -yq libssl1.0.0 runit wget python-httplib2 chrpath tzdata lsof lshw sysstat net-tools numactl
@@ -60,5 +68,5 @@ numbered_echo "Setting up memory"
     -d port=8091 \
     -d username=${USERNAME} \
     -d password=${PASSWORD} > /dev/null
-    
+
 echo "Couchbase running successfully" 
