@@ -34,15 +34,13 @@ numbered_echo() {
   i=`expr $i + 1`
 }
 
-echo "Prepare Couchbase dependencies"
+numbered_echo "Prepare Couchbase dependencies"
 sudo apt-get update 
 sudo apt-get install -yq libssl1.0.0 runit wget python-httplib2 chrpath tzdata lsof lshw sysstat net-tools numactl
 
-echo "Downloading couchbase"
+numbered_echo "Downloading couchbase"
 wget -q -N $CB_RELEASE_URL/$CB_VERSION/$CB_PACKAGE
 sudo dpkg -i ./$CB_PACKAGE && rm -f ./$CB_PACKAGE
-
-echo "Wait for couchbase startup"
 
 # Wait until it's ready
 until [[ $(check_db) = 0 ]]; do
@@ -69,4 +67,4 @@ numbered_echo "Setting up memory"
     -d username=${USERNAME} \
     -d password=${PASSWORD} > /dev/null
 
-echo "Couchbase running successfully" 
+echo "# Couchbase running successfully" 
