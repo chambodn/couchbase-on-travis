@@ -7,9 +7,7 @@ git:
 before_install:
   - ./setup_couchbase.sh
 
-install: true
-
-after_install:
+install:
  - echo "Test Bucket Creation"
  - curl -X POST -u admin:password http://127.0.0.1:8091/pools/default/buckets \
   -d name=newBucket -d ramQuotaMB=100 -d authType=none \
